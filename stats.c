@@ -1,6 +1,7 @@
 #include "stats.h"
 #include "alerter.h"
 #include <math.h>
+#include <cstdio>
 
 struct Stats compute_statistics(const float* numberset, int setlength) {
     struct Stats s;
