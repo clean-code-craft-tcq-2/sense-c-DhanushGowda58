@@ -1,11 +1,28 @@
-#include "stats.h"
+include "stats.h"
+#include "alert.h"
+#include <math.h>
 
 struct Stats compute_statistics(const float* numberset, int setlength) {
     struct Stats s;
-    s.average = 0;
-    s.min = 0;
-    s.max = 0;
+	float sum = 0.0, min = numberset[0], max = numberset[0];
+	int i;
+	if(setlength != 0){
+		for(i = 0; i < setlength; i++){
+			sum += numberset[i];
+			if (numberset[i] > max){
+				max =  numberset[i];
+			}
+			if (numberset[i] < min){
+				min = numberset[i];
+			}
+    	s.average = (sum/setlength);
+	    s.min = min;
+    	s.max = max;
+		}
+	}else{
+	    s.average = NAN;
+    	s.min = NAN;
+	    s.max = NAN;
+	}
+	return s;
 }
-
-int emailAlertCallCount = 0;
-int ledAlertCallCount = 0;
